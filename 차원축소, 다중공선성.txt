@@ -1,0 +1,25 @@
+다중공선성 확인
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+vif = pd.DataFrame()
+vif["VIF Factor"] = [variance_inflation_factor(X_tn.values, i) for i in range(X_tn.shape[1])]
+vif["features"] = X_tn.columns
+vif
+
+
+
+ols > 차원축소하기 위한 회귀
+from sklearn.model_selection import train_test_split
+X_tn, X_te, y_tn, y_te=train_test_split(X,y,test_size=0.1,random_state=0)
+
+from sklearn.preprocessing import StandardScaler
+st=StandardScaler()
+st.fit(X_tn)
+X_tn_st=st.transform(X_tn)
+X_te_st=st.transform(X_te)
+
+import statsmodels.api as sm;
+X_tn=sm.add_constant(X_tn)
+
+lm = sm.OLS(y_tn,X_tn).fit()
+lm.summary()
