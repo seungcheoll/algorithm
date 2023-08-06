@@ -898,7 +898,7 @@
 #     for i in range(g):
 #         for k in range(len(curve)-1,-1,-1):
 #             curve.append((curve[k]+1)%4)
-#
+#     print(curve)
 #     for j in range(len(curve)):
 #         r = r + dr[curve[j]]
 #         c = c + dc[curve[j]]
@@ -912,3 +912,101 @@
 #         if grid[i][k]==1 and grid[i+1][k]==1 and grid[i][k+1]==1 and grid[i+1][k+1]==1:
 #             n_dragon+=1
 # print(n_dragon)
+
+# # 뱀
+# import sys
+# from collections import deque
+# input=sys.stdin.readline
+# move=[]
+#
+# n=int(input())
+# k=int(input())
+#
+# board=[[0 for _ in range(n)]for _ in range(n)]
+# board[0][0]=1
+# for _ in range(k):
+#     apple_r,apple_c=map(int,input().split())
+#     board[apple_r-1][apple_c-1]=2
+#
+# l=int(input())
+# for _ in range(l):
+#     x,d=map(str,input().split())
+#     move.append([int(x),d])
+#
+# snake=deque()
+# snake.append((0,0))
+# dr=[0,1,0,-1]
+# dc=[1,0,-1,0]
+# snake_d=0
+# time = 0
+# r,c=0,0
+# def turn(direction):
+#     global snake_d
+#     if direction=='L':
+#         snake_d=(snake_d-1)%4
+#         return snake_d
+#     elif direction=='D':
+#         snake_d=(snake_d+1)%4
+#         return snake_d
+#
+# time_idx=0
+# while True:
+#     time += 1
+#     r=r+dr[snake_d]
+#     c=c+dc[snake_d]
+#     if r<0 or r>n-1 or c<0 or c>n-1 or (r,c) in snake:
+#         break
+#     if board[r][c]==2:
+#         snake.append((r,c))
+#         board[r][c]=0
+#     else:
+#         snake.popleft()
+#         snake.append((r,c))
+#     if time==move[time_idx][0]:
+#         snake_d=turn(move[time_idx][1])
+#         if time_idx<len(move)-1:
+#             time_idx+=1
+# print(time)
+
+
+# #톱니바퀴
+# from collections import deque
+# gear=[deque(list(map(int,input()))) for _ in range(4)]
+# k=int(input())
+# def turn_gear(gear_idx,d):
+#     if d==1:
+#         a=gear[gear_idx-1].pop()
+#         gear[gear_idx-1].appendleft(a)
+#     else:
+#         b = gear[gear_idx-1].popleft()
+#         gear[gear_idx-1].append(b)
+# for _ in range(k):
+#     gear_idx, d=map(int,input().split())
+#     right_gear, left_gear=gear[gear_idx-1][2], gear[gear_idx-1][6]
+#     right_d, left_d = d,d
+#     turn_gear(gear_idx,d)
+#     for i in range(gear_idx+1,5):
+#         if right_gear!=gear[i-1][6]:
+#             right_gear=gear[i-1][2]
+#             right_d *= -1
+#             turn_gear(i,right_d)
+#         else:
+#             break
+#     for k in range(gear_idx-1,0,-1):
+#         if left_gear!=gear[k-1][2]:
+#             left_gear=gear[k-1][6]
+#             left_d *= -1
+#             turn_gear(k,left_d)
+#         else:
+#             break
+# # 최종 score구하기
+# score=0
+# if gear[0][0] == 1:
+#     score += 1
+# if gear[1][0] == 1:
+#     score += 2
+# if gear[2][0] == 1:
+#     score += 4
+# if gear[3][0] == 1:
+#     score += 8
+# print(score)
