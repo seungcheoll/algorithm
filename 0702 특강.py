@@ -1010,3 +1010,5 @@
 # if gear[3][0] == 1:
 #     score += 8
 # print(score)
+
+#임예빈 바보
