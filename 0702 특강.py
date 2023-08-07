@@ -1011,4 +1011,94 @@
 #     score += 8
 # print(score)
 
-#임예빈 바보
+# #테트로미노
+# import sys
+# input=sys.stdin.readline
+# r,c=map(int,input().split())
+# grid=[list(map(int,input().split()))for _ in range(r)]
+# tet=[[[0,0],[0,1],[0,2],[0,3]],
+#      [[0,0],[1,0],[2,0],[3,0]],
+#      [[0,0],[0,1],[1,0],[1,1]],
+#      [[0,0],[1,0],[2,0],[2,1]],
+#      [[0,0],[0,1],[1,0],[2,0]],
+#      [[0,0],[1,0],[1,1],[1,2]],
+#      [[0,0],[1,0],[0,1],[0,2]],
+#      [[0,0],[0,1],[-1,1],[-2,1]],
+#      [[0,0],[0,1],[1,1],[2,1]],
+#      [[0,0],[0,1],[0,2],[-1,2]],
+#      [[0,0],[0,1],[0,2],[1,2]],
+#      [[0,0],[1,0],[1,1],[2,1]],
+#      [[0,0],[0,1],[-1,1],[1,0]],
+#      [[0,0],[0,1],[-1,1],[-1,2]],
+#      [[0,0],[0,1],[1,1],[1,2]],
+#      [[0,0],[0,1],[0,2],[1,1]],
+#      [[0,0],[0,1],[-1,1],[1,1]],
+#      [[0,0],[0,1],[0,2],[-1,1]],
+#      [[0,0],[1,0],[2,0],[1,1]]]
+# max_total=0
+# a=[]
+# grid_total_a=set()
+# for i in range(r):
+#     for j in range(c):
+#         for case in tet:
+#             total_a=0
+#             idx_a=0
+#             for dr,dc in case:
+#                 if 0<=(i+dr)<r and 0<=(j+dc)<c:
+#                     total_a+=grid[i+dr][j+dc]
+#             #         idx_a+=1
+#             # if idx_a/4==1:
+#                     grid_total_a.add(((i+dr),(j+dc)))
+# print(grid_total_a)
+# b=[]
+# grid_total=set()
+# for i in range(r):
+#     for j in range(c):
+#         for k in range(len(tet)):
+#             total=0
+#             idx=0
+#             for n in range(4):
+#                 try:
+#                     total += grid[i + tet[k][n][0]][j + tet[k][n][1]]
+#                     idx+=1
+#                 except IndexError:
+#                     break
+#                 else:
+#                     grid_total.add(((i + tet[k][n][0]),(j + tet[k][n][1])))
+# for i in grid_total_a:
+#     grid_total.remove(i)
+# print(grid_total)
+
+# import sys
+# input=sys.stdin.readline
+# r,c=map(int,input().split())
+# grid=[list(map(int,input().split()))for _ in range(r)]
+# tet=[[[0,0],[0,1],[0,2],[0,3]],
+#      [[0,0],[1,0],[2,0],[3,0]],
+#      [[0,0],[0,1],[1,0],[1,1]],
+#      [[0,0],[1,0],[2,0],[2,1]],
+#      [[0,0],[0,1],[1,0],[2,0]],
+#      [[0,0],[1,0],[1,1],[1,2]],
+#      [[0,0],[1,0],[0,1],[0,2]],
+#      [[0,0],[0,1],[-1,1],[-2,1]],
+#      [[0,0],[0,1],[1,1],[2,1]],
+#      [[0,0],[0,1],[0,2],[-1,2]],
+#      [[0,0],[0,1],[0,2],[1,2]],
+#      [[0,0],[1,0],[1,1],[2,1]],
+#      [[0,0],[0,1],[-1,1],[1,0]],
+#      [[0,0],[0,1],[-1,1],[-1,2]],
+#      [[0,0],[0,1],[1,1],[1,2]],
+#      [[0,0],[0,1],[0,2],[1,1]],
+#      [[0,0],[0,1],[-1,1],[1,1]],
+#      [[0,0],[0,1],[0,2],[-1,1]],
+#      [[0,0],[1,0],[2,0],[1,1]]]
+# max_total=0
+# for i in range(r):
+#     for j in range(c):
+#         for case in tet:
+#             total=0
+#             for dr,dc in case:
+#                 if 0<=(i+dr)<r and 0<=(j+dc)<c:
+#                     total += grid[i+dr][j+dc]
+#             max_total=max(max_total,total)
+# print(max_total)
