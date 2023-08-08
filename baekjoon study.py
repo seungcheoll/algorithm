@@ -1102,3 +1102,56 @@
 #                     total += grid[i+dr][j+dc]
 #             max_total=max(max_total,total)
 # print(max_total)
+
+# #연구소
+# import sys
+# from collections import deque
+# from itertools import combinations
+# import copy
+# n,m= map(int,sys.stdin.readline().split())
+# grid_d=[list(map(int,sys.stdin.readline().split()))for _ in range(n)]
+# dr=[0,0,1,-1]
+# dc=[1,-1,0,0]
+# zero_idx=[]
+# for i in range(n):
+#     for j in range(m):
+#         if grid_d[i][j]==0:
+#             zero_idx.append([i,j])
+# def bfs(grid):
+#     queue = deque()
+#     for i in range(n):
+#         for j in range(m):
+#             if grid[i][j]==2:
+#                 queue.append((i,j))
+#     while queue:
+#         r,c=queue.popleft()
+#         for k in range(4):
+#             nr=r+dr[k]
+#             nc=c+dc[k]
+#             if 0<=nr<n and 0<=nc<m:
+#                 if grid[nr][nc]==0:
+#                     queue.append((nr,nc))
+#                     grid[nr][nc]=2
+#     return grid
+#
+# cnt_list = []
+# wall_comb=deque()
+# for l in combinations(zero_idx,3):
+#     wall_comb.append(l)
+# while wall_comb:
+#     grid=copy.deepcopy(grid_d)
+#     w1,w2,w3=wall_comb.popleft()
+#     r1, c1 = w1[0], w1[1]
+#     r2, c2 = w2[0], w2[1]
+#     r3, c3 = w3[0], w3[1]
+#     grid[r1][c1] = 1
+#     grid[r2][c2] = 1
+#     grid[r3][c3] = 1
+#     bfs(grid)
+#     cnt = 0
+#     for o in range(n):
+#         for p in range(m):
+#             if grid[o][p] == 0:
+#                 cnt += 1
+#     cnt_list.append(cnt)
+# print(max(cnt_list))
