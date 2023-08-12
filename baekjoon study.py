@@ -805,14 +805,10 @@
 # t=int(input())
 # for _ in range(t):
 #     n=int(input())
-#     sum_n=[0 for _ in range(12)]
-#     sum_n[0]=0
-#     sum_n[1]=1
-#     sum_n[2]=2
-#     sum_n[3]=4
-#     for i in range(4,n+1):
-#         sum_n[i]=sum_n[i-1]+sum_n[i-2]+sum_n[i-3]
-#     print(sum_n[n])
+#     sum_n=[1,2,4]
+#     for i in range(3,n):
+#         sum_n.append(sum_n[i-1]+sum_n[i-2]+sum_n[i-3])
+#     print(sum_n[n-1])
 
 # #암호 만들기
 # import sys
@@ -1155,3 +1151,71 @@
 #                 cnt += 1
 #     cnt_list.append(cnt)
 # print(max(cnt_list))
+
+# #인구이동
+# import sys
+# from collections import deque
+# n,L,K=map(int,sys.stdin.readline().split())
+# grid=[list(map(int,sys.stdin.readline().split()))for _ in range(n)]
+# dr=[1,-1,0,0]
+# dc=[0,0,1,-1]
+# res=0
+# def bfs(x,y):
+#     global flag
+#     hap=grid[x][y]
+#     count=1
+#     visit_c[x][y]=1
+#     que = deque()
+#     change_idx=set()
+#     que.append((x,y))
+#     change_idx.add((x,y))
+#     while que:
+#         r,c = que.popleft()
+#         for j in range(4):
+#             nr=r+dr[j]
+#             nc=c+dc[j]
+#             if 0<=nr<n and 0<=nc<n and visit_c[nr][nc]==0 and L<=abs(grid[r][c]-grid[nr][nc])<=K:
+#                 visit_c[nr][nc]=1
+#                 que.append((nr,nc))
+#                 change_idx.add((nr,nc))
+#                 hap+=grid[nr][nc]
+#                 count+=1
+#
+#     mean_hap = hap // count
+#     if count>1:
+#         flag=True
+#         for x1,y1 in change_idx:
+#             grid[x1][y1]=mean_hap
+#
+# while True:
+#     flag=False
+#     visit_c = [[0 for _ in range(n)] for _ in range(n)]
+#     for i in range(n):
+#         for k in range(n):
+#             if visit_c[i][k]==0:
+#                 bfs(i,k)
+#     if flag:
+#         res+=1
+#     else:
+#         break
+# print(res)
+
+##설탕 배달
+# N=int(input())
+# a=0
+# if N%5==0:
+#     a=N//5
+# else:
+#     while N>0:
+#         N -= 3
+#         a += 1
+#         if N%5==0:
+#             a += N//5
+#             print(a)
+#             break
+#         elif N==1 or N==2:
+#             print(-1)
+#         elif N==0:
+#             print(a)
+#             break
+
